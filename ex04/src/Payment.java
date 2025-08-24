@@ -1,8 +1,8 @@
 public class Payment {
-    PaymentProvider provider;
+    IPaymentProvider provider;
     double amount;
 
-    Payment(PaymentProvider p, double a) {
+    Payment(IPaymentProvider p, double a) {
         provider = p;
         amount = a;
     }
