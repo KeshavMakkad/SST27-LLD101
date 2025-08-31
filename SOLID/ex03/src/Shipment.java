@@ -1,4 +1,9 @@
 public class Shipment {
-    String type; double weightKg;
-    Shipment(String type, double w){ this.type=type; this.weightKg=w; }
+    IShipmentType type;
+    double weightKg;
+
+    Shipment(IShipmentType type, double w) {
+        this.type = type;
+        this.weightKg = w;
+    }
 }
