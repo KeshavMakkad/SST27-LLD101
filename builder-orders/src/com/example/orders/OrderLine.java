@@ -11,9 +11,25 @@ public class OrderLine {
         this.unitPriceCents = unitPriceCents;
     }
 
-    public String getSku() { return sku; }
-    public int getQuantity() { return quantity; }
-    public int getUnitPriceCents() { return unitPriceCents; }
+    public OrderLine(OrderLine other) {
+        this.sku = other.sku;
+        this.quantity = other.quantity;
+        this.unitPriceCents = other.unitPriceCents;
+    }
 
-    public void setQuantity(int q) { this.quantity = q; }
+    public String getSku() {
+        return sku;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getUnitPriceCents() {
+        return unitPriceCents;
+    }
+
+    public void setQuantity(int q) {
+        this.quantity = q;
+    }
 }
