@@ -8,7 +8,7 @@ public class App {
         Map<String, PaymentGateway> gateways = new HashMap<>();
         gateways.put("fastpay", new FastPayAdapter(new FastPayClient()));
         gateways.put("safecash", new SafeCashAdapter(new SafeCashClient()));
-        OrderService svc = new OrderService(gateways);
+        OrderService svc = new OrderService();
 
         String id1 = svc.charge(gateways.get("fastpay"), "cust-1", 1299);
         String id2 = svc.charge(gateways.get("safecash"), "cust-2", 1299);
