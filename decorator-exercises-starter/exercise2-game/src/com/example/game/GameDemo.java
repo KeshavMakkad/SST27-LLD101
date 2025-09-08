@@ -8,32 +8,38 @@ public class GameDemo {
     public static void main(String[] args) {
         Character base = new BaseCharacter();
 
-        System.out.println("--- Base ---");
         base.move();
         base.attack();
+        System.out.println("Stats: Speed=" + base.getSpeed() + ", Damage=" + base.getDamage() + ", Sprite=" + base.getSprite());
 
-        // === YOUR TASKS ===
-        // 1) Create CharacterDecorator that implements Character and wraps another Character.
-        // 2) Create concrete decorators, for example:
-        //      - SpeedBoost (adds +N to speed, overrides getSpeed() and move() print)
-        //      - DamageBoost (adds +N to damage, overrides getDamage() and attack() print)
-        //      - GoldenAura (changes sprite, small buffs, logs aura on actions)
-        // 3) Show composition:
-        //      a) Base + SpeedBoost + DamageBoost
-        //      b) Add GoldenAura (sprite change + buffs)
-        //      c) Remove GoldenAura by recomposing (rebuild chain without it)
-        //
-        // Example (after you implement):
-        // Character buffed = new DamageBoost(new SpeedBoost(base, 3), 15);
-        // buffed.move();
-        // buffed.attack();
-        //
-        // Character shiny = new GoldenAura(buffed);
-        // shiny.move();
-        // shiny.attack();
-        //
-        // Character withoutAura = buffed; // removal by recomposition
-        // withoutAura.move();
-        // withoutAura.attack();
+        Character speedBoosted = new SpeedBoost(base, 3);
+        speedBoosted.move();
+        speedBoosted.attack();
+        System.out.println("Stats: Speed=" + speedBoosted.getSpeed() + ", Damage=" + speedBoosted.getDamage() + ", Sprite=" + speedBoosted.getSprite());
+
+        Character buffed = new DamageBoost(new SpeedBoost(base, 3), 15);
+        buffed.move();
+        buffed.attack();
+        System.out.println("Stats: Speed=" + buffed.getSpeed() + ", Damage=" + buffed.getDamage() + ", Sprite=" + buffed.getSprite());
+
+        Character shiny = new GoldenAura(buffed);
+        shiny.move();
+        shiny.attack();
+        System.out.println("Stats: Speed=" + shiny.getSpeed() + ", Damage=" + shiny.getDamage() + ", Sprite=" + shiny.getSprite());
+
+        Character withoutAura = buffed;
+        withoutAura.move();
+        withoutAura.attack();
+        System.out.println("Stats: Speed=" + withoutAura.getSpeed() + ", Damage=" + withoutAura.getDamage() + ", Sprite=" + withoutAura.getSprite());
+
+        Character complex = new SpeedBoost(
+            new GoldenAura(
+                new DamageBoost(base, 20)
+            ), 
+            5
+        );
+        complex.move();
+        complex.attack();
+        System.out.println("Stats: Speed=" + complex.getSpeed() + ", Damage=" + complex.getDamage() + ", Sprite=" + complex.getSprite());
     }
 }
